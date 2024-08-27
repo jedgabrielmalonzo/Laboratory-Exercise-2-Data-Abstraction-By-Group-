@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -262,5 +264,29 @@ public class Library_Management extends JFrame {
         for (Object[] row : data) {
             model.addRow(row);
         }
+    
+ // Action Listener for "Search" button
+    btnSearch.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String searchBookNo = textField_5.getText(); // Get the book number to search
+            searchBook(searchBookNo); // Call the method to search and display details
+        }
+    });}
+
+    // Method to search for a book and display details using JOptionPane
+    private void searchBook(String bookNo) {
+        for (Object[] row : data) {
+            if (row[0].equals(bookNo)) { // Assuming bookNo is in column 0
+                String bookDetails = String.format(
+                    "Book No: s\nBook Title: %s\nISBN No: %s\nAuthor: %s\nGenre: %s",
+                    row[0], row[1], row[2], row[3], row[4]
+                );
+                JOptionPane.showMessageDialog(this, bookDetails, "Book Details", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(this, "Book not found", "Search Result", JOptionPane.INFORMATION_MESSAGE);
     }
+  
 }
