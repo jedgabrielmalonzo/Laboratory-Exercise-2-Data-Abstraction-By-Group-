@@ -190,27 +190,27 @@ public class Library_Management extends JFrame {
         table.getColumnModel().getColumn(0).setPreferredWidth(35);
         scrollPane.setViewportView(table);
         
-        // Action Listener for "Enter" button (Add Book)
+        
         btnNewButton_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Retrieve data from text fields
+                
                 String bookNo = textField_6.getText();
                 String bookTitle = textField.getText();
                 String isbnNo = textField_2.getText();
                 String author = textField_3.getText();
                 String genre = textField_4.getText();
                 
-                // Create a new row of data
+                
                 Object[] row = {bookNo, bookTitle, isbnNo, author, genre};
                 
-                // Add the row to the ArrayList
+                
                 data.add(row);
                 
-                // Update the table with the new data
+                
                 updateTable();
                 
-                // Clear the text fields
+                
                 textField_6.setText("");
                 textField.setText("");
                 textField_2.setText("");
@@ -219,68 +219,71 @@ public class Library_Management extends JFrame {
             }
         });
         
-        // Action Listener for "Enter" button (Remove Book)
+        
         btnRemove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Retrieve book number to remove
+                
                 String bookNo = textField_1.getText();
                 
-                // Remove the row with the specified book number
+                
                 removeBook(bookNo);
                 
-                // Update the table with the modified data
+                
                 updateTable();
                 
-                // Clear the text field
+                
                 textField_1.setText("");
             }
         });
         
-        // Action Listener for "Search" button
+        
         btnSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Logic for searching (you can add search functionality here)
+                
             }
         });
     }
 
-    // Remove a book with the specified book number
+    
     private void removeBook(String bookNo) {
         for (int i = 0; i < data.size(); i++) {
-            if (data.get(i)[0].equals(bookNo)) { // Assuming bookNo is in column 0
+            if (data.get(i)[0].equals(bookNo)) { 
                 data.remove(i);
                 return;
             }
         }
     }
 
-    // Update the JTable with the current data in the ArrayList
+    
     private void updateTable() {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.setRowCount(0); // Clear all rows
+        model.setRowCount(0); 
         
         for (Object[] row : data) {
             model.addRow(row);
         }
     
- // Action Listener for "Search" button
+ 
     btnSearch.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String searchBookNo = textField_5.getText(); // Get the book number to search
-            searchBook(searchBookNo); // Call the method to search and display details
+            String searchBookNo = textField_5.getText(); 
+            searchBook(searchBookNo); 
         }
     });}
 
-    // Method to search for a book and display details using JOptionPane
+    
     private void searchBook(String bookNo) {
         for (Object[] row : data) {
-            if (row[0].equals(bookNo)) { // Assuming bookNo is in column 0
-                String bookDetails = String.format(
-                    "Book No: s\nBook Title: %s\nISBN No: %s\nAuthor: %s\nGenre: %s",
-                    row[0], row[1], row[2], row[3], row[4]
+            if (row[0].equals(bookNo)) { 
+            	
+            	String bookDetails = String.format(
+            		    "Book No: %s\nBook Title: %s\nISBN No: %s\nAuthor: %s\nGenre: %s",
+            		    row[0], row[1], row[2], row[3], row[4]
+            		
+
                 );
                 JOptionPane.showMessageDialog(this, bookDetails, "Book Details", JOptionPane.INFORMATION_MESSAGE);
                 return;
