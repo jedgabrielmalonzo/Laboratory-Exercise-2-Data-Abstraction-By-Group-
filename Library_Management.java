@@ -44,9 +44,7 @@ public class Library_Management extends JFrame {
     
     private ArrayList<Object[]> data = new ArrayList<>();
 
-    /**
-     * Launch the application.
-     */
+  
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -60,9 +58,6 @@ public class Library_Management extends JFrame {
         });
     }
 
-    /**
-     * Create the frame.
-     */
     public Library_Management() {
         setAlwaysOnTop(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
